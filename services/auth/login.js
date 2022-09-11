@@ -1,10 +1,12 @@
 const { getCorrectUser } = require("../../queries/auth");
-const {login} = require("../../errors/auth");
+const { generic, login } = require("../../errors/auth");
+const { hash, serialize } = require("../../utils");
 const errors = require("../../errors/commons");
-const { hash } = require("../../utils");
 
 module.exports = (db) => async (req, res, next) => {
     const {email, password} = req.body;
+
+    if (!email || !password) return next(generic["empty"]);
 
     const queryResult = await getCorrectUser(db)({
         email, 
@@ -12,9 +14,10 @@ module.exports = (db) => async (req, res, next) => {
     });
 
     if (!queryResult.ok) return next(login[queryResult.code] || errors[500]);
+
+    serialize(res, queryResult.data.email);
     
     res.status(200).json({
         success: true,
       });
-
 }
