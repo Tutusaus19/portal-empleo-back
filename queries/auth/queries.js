@@ -9,7 +9,7 @@ const selectFullUser = ({email}) => {
 };
 
 // Para insertar un usuario nuevo en la db
-const insertUser = ({ email, password, first_name, address, role }) => {
+const insertUser = ({ first_name, surname, email, password }) => {
     return sql`
       INSERT INTO users (
         first_name, surname, email, password
