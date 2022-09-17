@@ -1,2 +1,3 @@
 node_modules
+environments/test.js
 .env

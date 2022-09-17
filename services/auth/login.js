@@ -1,12 +1,12 @@
 const { getCorrectUser } = require("../../queries/auth");
-const { generic, login } = require("../../errors/auth");
+const { login } = require("../../errors/auth");
 const { hash, serialize } = require("../../utils");
 const errors = require("../../errors/commons");
 
 module.exports = (db) => async (req, res, next) => {
     const {email, password} = req.body;
 
-    if (!email || !password) return next(generic["empty"]);
+    // El middlware de checker nos hace esta función: if (!email || !password) return next(generic["empty"]);
 
     const queryResult = await getCorrectUser(db)({
         email, 
