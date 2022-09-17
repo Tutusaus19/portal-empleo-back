@@ -1,13 +1,7 @@
-const { deserialize, cookie} = require("../../utils");
-const errors = require("../../errors/commons");
+const { cookie} = require("../../utils");
 
-module.exports = () => async(req, res, next) => {
-    /// Recibimos las cookies y extraemos el JWT y lo devolvemos (función deserialize)
-    const payload = deserialize(req)
 
-    //Si no existe la cookie o es diferente tiene que saltar un error de unathorized
-    if(!payload) return next(errors[401]);
-
+module.exports = () => async(_, res, __) => {
     // Te desloguea limpiándote la cookie
     cookie.clear(res);
 

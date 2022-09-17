@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS users(
   surname TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
-  mobile TEXT NULL,
+  mobile TEXT,
   area areas,
   description TEXT,
   knowledge knowledges , 
